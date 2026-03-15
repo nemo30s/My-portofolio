@@ -121,13 +121,13 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.5 }}
               className="relative hidden lg:flex justify-center"
             >
-              <div className="w-80 h-80 relative glow-border rounded-lg overflow-hidden group">
+              <div className="w-96 h-96 relative glow-border rounded-full overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/10 z-20 mix-blend-overlay group-hover:bg-transparent transition-all duration-500" />
                 <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary z-30" />
                 <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary z-30" />
                 
                 <img 
-                  src={`${import.meta.env.BASE_URL}images/profile-placeholder.png`} 
+                  src={`${import.meta.env.BASE_URL}images/profile-pic.jpg`} 
                   alt="Ionut Diaconu" 
                   className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 />
