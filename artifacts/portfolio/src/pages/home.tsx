@@ -119,9 +119,9 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="relative hidden lg:flex justify-center"
+              className="relative flex justify-center lg:justify-center"
             >
-              <div className="w-96 h-96 relative glow-border rounded-full overflow-hidden group">
+              <div className="w-48 h-48 lg:w-96 lg:h-96 relative glow-border rounded-full overflow-hidden group">
                 <div className="absolute inset-0 bg-primary/10 z-20 mix-blend-overlay group-hover:bg-transparent transition-all duration-500" />
                 <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary z-30" />
                 <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary z-30" />
