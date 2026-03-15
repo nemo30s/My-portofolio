@@ -93,7 +93,25 @@ export default function ProjectDetail() {
                 <Users className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                 <div>
                   <p className="font-mono text-xs text-muted-foreground tracking-widest mb-1 uppercase">Team</p>
-                  <p className="font-mono text-sm text-foreground">{project.collaborators.join(", ")}</p>
+                  <p className="font-mono text-sm text-foreground">
+                    {project.collaborators.map((name, i) => (
+                      <span key={name}>
+                        {i > 0 && ", "}
+                        {name === "Yassine Aichi" ? (
+                          <a
+                            href="https://www.linkedin.com/in/yassine-aichi/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            {name}
+                          </a>
+                        ) : (
+                          name
+                        )}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               </div>
             )}
