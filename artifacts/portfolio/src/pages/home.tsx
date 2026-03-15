@@ -129,7 +129,7 @@ export default function Home() {
                 <img 
                   src={`${import.meta.env.BASE_URL}images/profile-pic.jpg`} 
                   alt="Ionut Diaconu" 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                  className="w-full h-full object-cover transition-all duration-700"
                 />
               </div>
             </motion.div>
