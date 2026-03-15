@@ -157,7 +157,7 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
                 
                 <p>
-                  I'm a Romanian computer science student studying applied CS in Belgium. I love building things — from machine learning pipelines to full-stack web apps. I'm currently working on Retallio, a SaaS product I designed and built from scratch.
+                  I'm a computer science student studying in Belgium. I love building things, from machine learning pipelines to full-stack web apps. I'm currently working on Retallio, a SaaS product I designed and built from scratch.
                 </p>
                 <p>
                   Outside of coding I play chess and go to the gym — both keep me sharp in different ways. I'm currently looking for a job where I can keep learning and contribute to something meaningful.
