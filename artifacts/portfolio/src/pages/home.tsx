@@ -352,13 +352,15 @@ export default function Home() {
 
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {[
-                { title: "Languages", icon: <Code2 />, skills: ["Python", "JavaScript", "TypeScript", "C/C++"] },
-                { title: "ML & AI", icon: <Brain />, skills: ["TensorFlow", "PyTorch", "scikit-learn", "OpenCV"] },
-                { title: "Web Dev", icon: <Network />, skills: ["Next.js", "React", "Node.js", "Tailwind", "PostgreSQL"] },
-                { title: "Tools", icon: <Database />, skills: ["Git", "Docker", "Linux", "Arduino"] }
+                { title: "Languages", icon: <Code2 />, skills: ["Python", "Java", "JavaScript", "TypeScript", "C/C++", "SQL"] },
+                { title: "ML & AI", icon: <Brain />, skills: ["PyTorch", "TensorFlow", "scikit-learn", "HuggingFace", "Stable Baselines3", "OpenCV"] },
+                { title: "Data & Analytics", icon: <Database />, skills: ["PySpark", "Power BI", "Pandas", "NumPy", "ETL Pipelines", "KPI Analysis"] },
+                { title: "Backend & APIs", icon: <Network />, skills: ["Spring Boot", "FastAPI", "Node.js", "REST APIs", "PostgreSQL", "Redis"] },
+                { title: "Web & Frontend", icon: <Terminal />, skills: ["React", "Next.js", "Tailwind CSS", "TypeScript"] },
+                { title: "DevTools & Infra", icon: <Cpu />, skills: ["Docker", "Git", "Linux", "Jupyter", "TensorBoard", "Google Colab"] },
               ].map((category, i) => (
                 <motion.div key={i} variants={fadeInUp}>
                   <Card className="bg-background/60 border-primary/20 hover:border-primary/50 transition-colors h-full">
