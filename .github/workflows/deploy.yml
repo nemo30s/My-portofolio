@@ -29,7 +29,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          BASE_PATH: /My-portofolio/
+          BASE_PATH: /
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
