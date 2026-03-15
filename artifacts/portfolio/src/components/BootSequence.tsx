@@ -81,8 +81,8 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     } else {
       setTimeout(() => {
         setIsDone(true);
-        setTimeout(onComplete, 800);
-      }, 1500);
+        setTimeout(onComplete, 600);
+      }, 1200);
     }
   };
 
