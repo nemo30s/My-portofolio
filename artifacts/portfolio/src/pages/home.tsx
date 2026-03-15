@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'wouter';
 import { BootSequence } from '@/components/BootSequence';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
@@ -9,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, Linkedin, ExternalLink } from 'lucide-react';
+import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, Linkedin, ExternalLink, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 function useContactForm() {
@@ -36,6 +37,7 @@ function useContactForm() {
 export default function Home() {
   const [booting, setBooting] = useState(true);
   const { submit, isPending } = useContactForm();
+  const [, navigate] = useLocation();
 
   if (booting) {
     return <BootSequence onComplete={() => setBooting(false)} />;
@@ -252,12 +254,13 @@ export default function Home() {
                   title: "Web Traffic Analysis",
                   desc: "A personal project where I analyzed web traffic data from the Brussels open data portal and built interactive visualizations around it.",
                   tech: ["Python", "Pandas", "Matplotlib", "Jupyter"],
-                  link: "https://nemo30s.github.io/web-traffic-analysis/"
+                  link: "https://nemo30s.github.io/web-traffic-analysis/",
                 },
                 {
-                  title: "Machine Learning Pipeline",
-                  desc: "An end-to-end ML project covering data prep, model training, evaluation, and deployment. Done as part of my studies.",
-                  tech: ["Python", "scikit-learn", "Docker", "MLflow"],
+                  title: "Credit Card Fraud Detection",
+                  desc: "End-to-end ML lifecycle project — data prep, model training, evaluation, SHAP analysis, and FastAPI deployment. Tackled extreme class imbalance with SMOTE.",
+                  tech: ["Python", "scikit-learn", "XGBoost", "SMOTE", "FastAPI"],
+                  slug: "ml-lifecycle",
                 },
                 {
                   title: "Computer Vision",
@@ -265,47 +268,71 @@ export default function Home() {
                   tech: ["PyTorch", "OpenCV", "NumPy"],
                 },
                 {
-                  title: "Reinforcement Learning",
-                  desc: "Trained agents to learn from scratch in simulated environments using reinforcement learning techniques.",
-                  tech: ["Python", "Gymnasium", "TensorFlow"],
+                  title: "RL Agent Training",
+                  desc: "Trained a DQN agent to solve MountainCar-v0 using custom reward shaping to overcome the sparse reward problem.",
+                  tech: ["Python", "Stable Baselines3", "Gymnasium", "DQN"],
+                  slug: "reinforcement-learning",
                 },
                 {
-                  title: "Sentiment Analysis",
-                  desc: "NLP project classifying sentiment in text using transformer models. Applied to real-world datasets.",
-                  tech: ["NLTK", "Transformers", "Python"],
+                  title: "Aspect-Based Sentiment Analysis",
+                  desc: "Compared three ABSA approaches — lexicon, transformer, and LLM — behind a unified API to identify per-aspect sentiment in text.",
+                  tech: ["spaCy", "HuggingFace", "Mistral 7B", "Ollama"],
+                  slug: "sentiment-analysis",
+                },
+                {
+                  title: "AI Meal Planning Agent",
+                  desc: "Multi-agent system using Gemini that generates personalised weekly meal plans with live Belgian supermarket pricing and RAG-based recipe retrieval.",
+                  tech: ["Gemini API", "FastAPI", "ChromaDB", "Docker", "Prometheus"],
+                  slug: "ai-agents",
                 },
                 {
                   title: "SafetyNet",
                   desc: "An Arduino-based safety monitoring system — my first embedded systems project and where it all started.",
                   tech: ["Arduino", "C++", "Sensors"],
-                }
-              ].map((proj, i) => (
-                <motion.div key={i} variants={fadeInUp}>
-                  <Card className="h-full bg-background/50 hover:bg-background/80 flex flex-col">
-                    <CardHeader>
-                      <div className="flex justify-between items-start mb-4">
-                        <div className="w-10 h-10 bg-primary/10 flex items-center justify-center border border-primary/30">
-                          <Code2 className="w-5 h-5 text-primary" />
+                },
+              ].map((proj, i) => {
+                const hasDetail = !!proj.slug;
+                const hasLink = !!proj.link;
+                const handleCardClick = () => {
+                  if (hasDetail) navigate(`/projects/${proj.slug}`);
+                  else if (hasLink) window.open(proj.link, "_blank");
+                };
+                const isClickable = hasDetail || hasLink;
+
+                return (
+                  <motion.div key={i} variants={fadeInUp}>
+                    <Card
+                      className={`h-full bg-background/50 hover:bg-background/80 flex flex-col transition-all ${isClickable ? "cursor-pointer hover:border-primary/50" : ""}`}
+                      onClick={isClickable ? handleCardClick : undefined}
+                    >
+                      <CardHeader>
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="w-10 h-10 bg-primary/10 flex items-center justify-center border border-primary/30">
+                            <Code2 className="w-5 h-5 text-primary" />
+                          </div>
+                          {hasDetail && (
+                            <span className="flex items-center gap-1 text-xs font-mono text-primary/60 hover:text-primary transition-colors">
+                              Read more <ArrowRight className="w-3 h-3" />
+                            </span>
+                          )}
+                          {hasLink && !hasDetail && (
+                            <ExternalLink className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
+                          )}
                         </div>
-                        {proj.link && (
-                          <a href={proj.link} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                            <ExternalLink className="w-5 h-5" />
-                          </a>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl hover:text-primary transition-colors cursor-pointer">{proj.title}</CardTitle>
-                      <CardDescription className="font-mono mt-2 min-h-[60px]">{proj.desc}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="mt-auto pt-0 pb-6 px-6">
-                      <div className="flex flex-wrap gap-2">
-                        {proj.tech.map(t => (
-                          <span key={t} className="text-[10px] font-mono text-primary/70 uppercase tracking-widest before:content-['#'] before:mr-0.5">{t}</span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                        <CardTitle className={`text-xl transition-colors ${isClickable ? "group-hover:text-primary" : ""}`}>{proj.title}</CardTitle>
+                        <CardDescription className="font-mono mt-2 min-h-[60px]">{proj.desc}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="mt-auto pt-0 pb-6 px-6">
+                        <div className="flex flex-wrap gap-2">
+                          {proj.tech.map(t => (
+                            <span key={t} className="text-[10px] font-mono text-primary/70 uppercase tracking-widest before:content-['#'] before:mr-0.5">{t}</span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </div>
         </section>

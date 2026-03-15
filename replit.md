@@ -91,6 +91,22 @@ Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used b
 
 Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
 
+### `artifacts/portfolio` (`@workspace/portfolio`)
+
+Personal portfolio website for Ionut Diaconu. Pure React + Vite SPA with cyberpunk/Watch Dogs dark aesthetic.
+
+- **Design**: Deep navy background, neon cyan primary, Fira Code monospace + Playfair Display serif, sharp corners, grid background
+- **Routing**: Wouter — `/` (Home), `/projects/:slug` (ProjectDetail), `/not-found`
+- **Key files**:
+  - `src/pages/home.tsx` — main landing page (boot sequence, hero, about, projects, skills, contact)
+  - `src/pages/ProjectDetail.tsx` — individual project page with highlights, overview, and section breakdown
+  - `src/data/projects.ts` — all 4 detailed project objects (ml-lifecycle, reinforcement-learning, sentiment-analysis, ai-agents)
+  - `src/components/BootSequence.tsx`, `Navigation.tsx`, `Footer.tsx`, `GlitchText.tsx`
+  - `src/index.css` — CSS variables, cyberpunk theme, grid background
+- **Projects with detail pages**: Credit Card Fraud Detection, RL Agent, ABSA, AI Meal Planning Agent
+- **Animations**: Framer Motion scroll-triggered reveals throughout
+- Profile picture: not yet added (user will upload)
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
