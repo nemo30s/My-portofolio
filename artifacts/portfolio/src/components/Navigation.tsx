@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from './ui/button';
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,10 +34,10 @@ export function Navigation() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <div className="w-10 h-10 border-2 border-primary rotate-45 flex items-center justify-center group-hover:bg-primary/10 transition-colors shadow-[0_0_10px_rgba(0,240,255,0.2)]">
-            <span className="-rotate-45 font-serif font-bold text-lg text-primary tracking-tighter">IN</span>
+            <span className="-rotate-45 font-serif font-bold text-lg text-primary tracking-tighter">ID</span>
           </div>
           <span className="font-mono text-sm tracking-[0.2em] font-bold text-foreground hidden sm:block">
-            IONUT<span className="text-primary">_SYS</span>
+            Ionut<span className="text-primary"> Diaconu</span>
           </span>
         </div>
 
@@ -55,16 +54,14 @@ export function Navigation() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="hidden sm:flex tracking-widest text-xs"
-            onClick={() => window.open('https://github.com/Ionut-Alexandru', '_blank')}
-          >
-            GITHUB_
-          </Button>
-        </div>
+        <a
+          href="https://www.linkedin.com/in/diaconu-ionut/"
+          target="_blank"
+          rel="noreferrer"
+          className="hidden sm:flex items-center gap-2 text-xs font-mono border border-primary/30 text-primary px-4 py-2 hover:bg-primary/10 transition-colors tracking-widest"
+        >
+          LinkedIn ↗
+        </a>
       </div>
     </motion.header>
   );

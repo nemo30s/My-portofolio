@@ -6,13 +6,12 @@ import { Footer } from '@/components/Footer';
 import { GlitchText } from '@/components/GlitchText';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell } from 'lucide-react';
+import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, Linkedin, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Dummy form state hook simulation since we have no backend
 function useContactForm() {
   const [isPending, setIsPending] = useState(false);
   const { toast } = useToast();
@@ -23,8 +22,8 @@ function useContactForm() {
     setTimeout(() => {
       setIsPending(false);
       toast({
-        title: "Message Encrypted & Sent",
-        description: "Your transmission has been securely routed to Ionut.",
+        title: "Message sent!",
+        description: "Thanks for reaching out — I'll get back to you soon.",
         variant: "default",
       });
       (e.target as HTMLFormElement).reset();
@@ -79,23 +78,23 @@ export default function Home() {
             >
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 border border-primary/30 bg-primary/5 text-primary text-xs font-mono tracking-widest">
                 <Terminal className="w-3 h-3" />
-                <span>USER_AUTH_ACCEPTED</span>
+                <span>Open to work</span>
               </motion.div>
               
               <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-tight">
                 <GlitchText text="Ionut" />
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent italic opacity-90">
-                  Alexandru
+                  Diaconu
                 </span>
               </motion.h1>
 
               <motion.div variants={fadeInUp} className="space-y-4">
                 <p className="font-mono text-lg md:text-xl text-muted-foreground tracking-wide">
-                  &gt; Applied CS Student · Freelancer · Builder
+                  Applied CS Student · Builder · Open to opportunities
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <Badge variant="outline" className="gap-1.5"><GraduationCap className="w-3 h-3 text-primary"/> ULB Belgium</Badge>
+                  <Badge variant="outline" className="gap-1.5"><GraduationCap className="w-3 h-3 text-primary"/> Antwerp, Belgium</Badge>
                   <Badge variant="outline" className="gap-1.5"><MapPin className="w-3 h-3 text-primary"/> Romanian</Badge>
                   <Badge variant="outline" className="gap-1.5"><Target className="w-3 h-3 text-primary"/> Chess Player</Badge>
                   <Badge variant="outline" className="gap-1.5"><Dumbbell className="w-3 h-3 text-primary"/> Gym Enthusiast</Badge>
@@ -104,10 +103,10 @@ export default function Home() {
 
               <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 pt-4">
                 <Button variant="solid" size="lg" glitch onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-                  ACCESS_PROJECTS
+                  View Projects
                 </Button>
                 <Button variant="outline" size="lg" onClick={() => window.open('https://retallio.app', '_blank')} className="border-accent text-accent hover:bg-accent/10 hover:text-accent">
-                  RETALLIO.APP <span className="ml-2">↗</span>
+                  Retallio.app <span className="ml-2">↗</span>
                 </Button>
               </motion.div>
             </motion.div>
@@ -119,17 +118,13 @@ export default function Home() {
               className="relative hidden lg:flex justify-center"
             >
               <div className="w-80 h-80 relative glow-border rounded-lg overflow-hidden group">
-                {/* Techy overlay elements */}
                 <div className="absolute inset-0 bg-primary/10 z-20 mix-blend-overlay group-hover:bg-transparent transition-all duration-500" />
                 <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary z-30" />
                 <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary z-30" />
-                <div className="absolute top-4 right-4 bg-background/80 text-primary text-[10px] font-mono px-2 py-1 z-30 border border-primary/30 backdrop-blur-sm">
-                  REC // 00:00:00
-                </div>
                 
                 <img 
                   src={`${import.meta.env.BASE_URL}images/profile-placeholder.png`} 
-                  alt="Ionut Silhouette" 
+                  alt="Ionut Diaconu" 
                   className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 />
               </div>
@@ -146,7 +141,7 @@ export default function Home() {
             >
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
                 <span className="text-primary font-mono text-lg mr-4">01.</span>
-                SYSTEM_IDENTITY
+                About Me
               </h2>
             </motion.div>
 
@@ -158,14 +153,13 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
                 
                 <p>
-                  <span className="text-primary font-bold">Initialize Bio_</span><br/>
-                  I am a Romanian computer science student currently embedded in the academic frameworks of Belgium at ULB. My focus lies at the intersection of applied software engineering, machine learning, and building robust web applications.
+                  I'm a Romanian computer science student studying applied CS in Belgium. I love building things — from machine learning pipelines to full-stack web apps. I'm currently working on Retallio, a SaaS product I designed and built from scratch.
                 </p>
                 <p>
-                  Beyond the terminal, I optimize my mental and physical algorithms. Chess provides the strategic foresight required for complex system architecture, while the gym ensures hardware maintenance.
+                  Outside of coding I play chess and go to the gym — both keep me sharp in different ways. I'm currently looking for a job where I can keep learning and contribute to something meaningful.
                 </p>
                 <p>
-                  Currently open for interesting collaborations, freelance contracts, and challenging builds that push the boundaries of what's possible.
+                  I'm comfortable across the stack, from training ML models to shipping production web apps. If you have an interesting opportunity, I'd love to hear about it.
                 </p>
               </motion.div>
 
@@ -174,9 +168,9 @@ export default function Home() {
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { label: "Status", value: "Student & Freelancer", icon: <Terminal className="w-5 h-5 text-primary mb-2" /> },
-                  { label: "Location", value: "Brussels, Belgium", icon: <MapPin className="w-5 h-5 text-primary mb-2" /> },
-                  { label: "Origin", value: "Romania", icon: <Network className="w-5 h-5 text-primary mb-2" /> },
+                  { label: "Status", value: "Student, open to work", icon: <Terminal className="w-5 h-5 text-primary mb-2" /> },
+                  { label: "Location", value: "Antwerp, Belgium", icon: <MapPin className="w-5 h-5 text-primary mb-2" /> },
+                  { label: "From", value: "Romania", icon: <Network className="w-5 h-5 text-primary mb-2" /> },
                   { label: "Interests", value: "Code, Chess, Gym", icon: <Brain className="w-5 h-5 text-primary mb-2" /> }
                 ].map((stat, i) => (
                   <motion.div key={i} variants={fadeInUp}>
@@ -200,7 +194,7 @@ export default function Home() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
                 <span className="text-primary font-mono text-lg mr-4">02.</span>
-                EXECUTABLE_ARCHIVES
+                Projects
               </h2>
             </motion.div>
 
@@ -212,10 +206,10 @@ export default function Home() {
                     <div className="absolute top-0 right-0 p-4 opacity-10">
                       <Cpu className="w-32 h-32 text-primary" />
                     </div>
-                    <Badge variant="live" className="w-max mb-4">LIVE · SaaS</Badge>
+                    <Badge variant="live" className="w-max mb-4">Live · SaaS</Badge>
                     <h3 className="text-3xl font-serif font-bold text-foreground mb-4">Retallio</h3>
                     <p className="text-muted-foreground font-mono text-sm leading-relaxed mb-8">
-                      Retainer management SaaS tailored for freelancers. Features real-time hours tracking, projected invoice calculations, and a comprehensive billing dashboard to streamline client management.
+                      A retainer management tool for freelancers. I built it because I couldn't find anything that gave both the freelancer and the client a clear, real-time view of hours used, upcoming invoices, and billing — so I made it myself.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-8">
                       {['Next.js', 'React', 'Tailwind', 'Framer Motion', 'Node.js', 'PostgreSQL', 'Stripe'].map(tech => (
@@ -225,8 +219,8 @@ export default function Home() {
                       ))}
                     </div>
                     <Button variant="solid" className="w-max gap-2" onClick={() => window.open('https://retallio.app', '_blank')}>
-                      <Network className="w-4 h-4" />
-                      INITIATE_CONNECTION
+                      <ExternalLink className="w-4 h-4" />
+                      Visit Retallio
                     </Button>
                   </div>
                   <div className="bg-secondary/20 p-8 flex items-center justify-center overflow-hidden relative group">
@@ -239,7 +233,7 @@ export default function Home() {
                            <div className="w-2 h-2 rounded-full bg-primary/50" />
                          </div>
                          <div className="flex-1 p-4 bg-[linear-gradient(to_right,#00f0ff05_1px,transparent_1px),linear-gradient(to_bottom,#00f0ff05_1px,transparent_1px)] bg-[size:20px_20px]">
-                           <span className="text-primary animate-pulse">&gt;_</span> compiling dashboard.tsx...
+                           <span className="text-primary animate-pulse">&gt;_</span> retallio.app
                          </div>
                        </div>
                     </div>
@@ -255,35 +249,35 @@ export default function Home() {
             >
               {[
                 {
-                  title: "Brussels Open Data",
-                  desc: "Personal project analyzing Brussels city open data with visualizations.",
+                  title: "Web Traffic Analysis",
+                  desc: "A personal project where I analyzed web traffic data from the Brussels open data portal and built interactive visualizations around it.",
                   tech: ["Python", "Pandas", "Matplotlib", "Jupyter"],
-                  link: "https://github.com/Ionut-Alexandru/brussels-analysis"
+                  link: "https://nemo30s.github.io/web-traffic-analysis/"
                 },
                 {
-                  title: "ML Full Lifecycle",
-                  desc: "Academic project covering the end-to-end pipeline of machine learning models.",
+                  title: "Machine Learning Pipeline",
+                  desc: "An end-to-end ML project covering data prep, model training, evaluation, and deployment. Done as part of my studies.",
                   tech: ["Python", "scikit-learn", "Docker", "MLflow"],
                 },
                 {
-                  title: "Computer Vision Net",
-                  desc: "Academic CV project implementing custom neural networks for image classification.",
+                  title: "Computer Vision",
+                  desc: "Built and trained neural networks for image classification tasks. One of my favourite academic projects.",
                   tech: ["PyTorch", "OpenCV", "NumPy"],
                 },
                 {
-                  title: "RL Agent Training",
-                  desc: "Academic reinforcement learning project training agents in simulated environments.",
+                  title: "Reinforcement Learning",
+                  desc: "Trained agents to learn from scratch in simulated environments using reinforcement learning techniques.",
                   tech: ["Python", "Gymnasium", "TensorFlow"],
                 },
                 {
                   title: "Sentiment Analysis",
-                  desc: "Academic NLP project performing text classification on large datasets.",
+                  desc: "NLP project classifying sentiment in text using transformer models. Applied to real-world datasets.",
                   tech: ["NLTK", "Transformers", "Python"],
                 },
                 {
-                  title: "SafetyNet Embedded",
-                  desc: "Academic IoT project building embedded systems for environmental monitoring.",
-                  tech: ["Arduino", "C++", "Sensors", "Serial"],
+                  title: "SafetyNet",
+                  desc: "An Arduino-based safety monitoring system — my first embedded systems project and where it all started.",
+                  tech: ["Arduino", "C++", "Sensors"],
                 }
               ].map((proj, i) => (
                 <motion.div key={i} variants={fadeInUp}>
@@ -295,8 +289,7 @@ export default function Home() {
                         </div>
                         {proj.link && (
                           <a href={proj.link} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                            <span className="sr-only">GitHub</span>
-                            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4"></path></svg>
+                            <ExternalLink className="w-5 h-5" />
                           </a>
                         )}
                       </div>
@@ -323,7 +316,7 @@ export default function Home() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
                 <span className="text-primary font-mono text-lg mr-4">03.</span>
-                CAPABILITY_MATRIX
+                Skills
               </h2>
             </motion.div>
 
@@ -332,10 +325,10 @@ export default function Home() {
               className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
-                { title: "LANGUAGES", icon: <Code2 />, skills: ["Python", "JavaScript", "TypeScript", "C/C++"] },
-                { title: "ML / AI", icon: <Brain />, skills: ["TensorFlow", "PyTorch", "scikit-learn", "OpenCV"] },
-                { title: "WEB DEV", icon: <Network />, skills: ["Next.js", "React", "Node.js", "Tailwind", "PostgreSQL"] },
-                { title: "TOOLS", icon: <Database />, skills: ["Git", "Docker", "Linux", "Arduino"] }
+                { title: "Languages", icon: <Code2 />, skills: ["Python", "JavaScript", "TypeScript", "C/C++"] },
+                { title: "ML & AI", icon: <Brain />, skills: ["TensorFlow", "PyTorch", "scikit-learn", "OpenCV"] },
+                { title: "Web Dev", icon: <Network />, skills: ["Next.js", "React", "Node.js", "Tailwind", "PostgreSQL"] },
+                { title: "Tools", icon: <Database />, skills: ["Git", "Docker", "Linux", "Arduino"] }
               ].map((category, i) => (
                 <motion.div key={i} variants={fadeInUp}>
                   <Card className="bg-background/60 border-primary/20 hover:border-primary/50 transition-colors h-full">
@@ -368,7 +361,7 @@ export default function Home() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
                 <span className="text-primary font-mono text-lg mr-4">04.</span>
-                ESTABLISH_UPLINK
+                Get in Touch
               </h2>
             </motion.div>
 
@@ -378,37 +371,27 @@ export default function Home() {
                 className="md:col-span-2 space-y-8"
               >
                 <p className="font-mono text-muted-foreground text-sm leading-relaxed">
-                  Looking to build a highly optimized system, train a custom model, or need a robust full-stack solution? The network is open. Transmit your coordinates and objective below.
+                  Whether you have a job opportunity, want to collaborate on something, or just want to say hi — feel free to reach out. I'm always happy to chat.
                 </p>
                 
                 <div className="space-y-4">
-                  <a href="mailto:hello@example.com" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
+                  <a href="mailto:diaconu.ionut029@gmail.com" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
                     <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10">
                       <Send className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground tracking-widest">PROTOCOL: SMTP</span>
-                      <span className="text-foreground group-hover:text-primary transition-colors">hello@ionut.sys</span>
+                      <span className="text-xs text-muted-foreground tracking-widest">Email</span>
+                      <span className="text-foreground group-hover:text-primary transition-colors">diaconu.ionut029@gmail.com</span>
                     </div>
                   </a>
 
-                  <a href="https://github.com/Ionut-Alexandru" target="_blank" rel="noreferrer" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
+                  <a href="https://www.linkedin.com/in/diaconu-ionut/" target="_blank" rel="noreferrer" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
                     <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10">
-                      <Terminal className="w-4 h-4" />
+                      <Linkedin className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground tracking-widest">PROTOCOL: GITHUB</span>
-                      <span className="text-foreground group-hover:text-primary transition-colors">Ionut-Alexandru</span>
-                    </div>
-                  </a>
-                  
-                  <a href="#" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
-                    <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10">
-                      <Network className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground tracking-widest">PROTOCOL: LINKEDIN</span>
-                      <span className="text-foreground group-hover:text-primary transition-colors">/in/ionut-alexandru</span>
+                      <span className="text-xs text-muted-foreground tracking-widest">LinkedIn</span>
+                      <span className="text-foreground group-hover:text-primary transition-colors">Ionut Diaconu</span>
                     </div>
                   </a>
                 </div>
@@ -421,20 +404,20 @@ export default function Home() {
                 <form onSubmit={submit} className="space-y-6 bg-card/30 p-8 border border-primary/20">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Target_Alias</label>
-                      <Input required placeholder="Enter Name" />
+                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Your Name</label>
+                      <Input required placeholder="John Smith" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Return_Address</label>
-                      <Input required type="email" placeholder="Enter Email" />
+                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Your Email</label>
+                      <Input required type="email" placeholder="john@example.com" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-mono text-primary tracking-widest uppercase">Payload_Data</label>
-                    <Textarea required placeholder="Enter transmission..." />
+                    <label className="text-xs font-mono text-primary tracking-widest uppercase">Message</label>
+                    <Textarea required placeholder="What's on your mind?" />
                   </div>
                   <Button type="submit" variant="solid" className="w-full" disabled={isPending}>
-                    {isPending ? "ENCRYPTING..." : "TRANSMIT_PAYLOAD"}
+                    {isPending ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </motion.div>

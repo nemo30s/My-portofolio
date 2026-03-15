@@ -8,17 +8,17 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-6 h-6 border border-primary rotate-45 flex items-center justify-center">
-            <span className="-rotate-45 font-serif font-bold text-[10px] text-primary">IN</span>
+            <span className="-rotate-45 font-serif font-bold text-[10px] text-primary">ID</span>
           </div>
           <span className="font-mono text-xs tracking-widest text-muted-foreground">
-            © {new Date().getFullYear()} IONUT. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} Ionut Diaconu
           </span>
         </div>
         
         <div className="flex gap-6 font-mono text-xs tracking-widest text-muted-foreground">
-          <a href="#" className="hover:text-primary transition-colors">TERMINAL</a>
-          <a href="#" className="hover:text-primary transition-colors">ROOT</a>
-          <a href="#" className="hover:text-primary transition-colors">SYS_ADMIN</a>
+          <a href="mailto:diaconu.ionut029@gmail.com" className="hover:text-primary transition-colors">Email</a>
+          <a href="https://www.linkedin.com/in/diaconu-ionut/" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
+          <a href="https://retallio.app" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Retallio</a>
         </div>
       </div>
     </footer>
