@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Fira Code', monospace; /* Default to mono for hacker vibe */
+
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 8px;
+}
+
+:root {
+  /* Forced Dark Cyberpunk Theme */
+  --background: 228 30% 5%;
+  --foreground: 180 20% 90%;
+  
+  --card: 228 30% 6%;
+  --card-foreground: 180 20% 90%;
+  
+  --popover: 228 30% 5%;
+  --popover-foreground: 180 20% 90%;
+  
+  /* Primary Neon Cyan */
+  --primary: 184 100% 50%;
+  --primary-foreground: 228 30% 5%;
+  
+  /* Secondary Dark Blue/Grey */
+  --secondary: 220 40% 12%;
+  --secondary-foreground: 180 50% 80%;
+  
+  --muted: 220 30% 10%;
+  --muted-foreground: 180 20% 60%;
+  
+  /* Accent Electric Blue/Purple */
+  --accent: 280 100% 60%;
+  --accent-foreground: 180 20% 90%;
+  
+  --destructive: 0 100% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 184 50% 20%;
+  --input: 184 30% 15%;
+  --ring: 184 100% 50%;
+  
+  --radius: 0px; /* Brutalist/Sharp corners */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-background text-foreground overflow-x-hidden;
+    background-image: 
+      linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+  }
+  
+  ::selection {
+    @apply bg-primary/30 text-primary;
+  }
+}
+
+@layer utilities {
+  .scanline {
+    width: 100vw;
+    height: 100px;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 240, 255, 0.1) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 0.1;
+    position: fixed;
+    bottom: 100%;
+    left: 0;
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .crt-overlay {
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+    background-size: 100% 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 49;
+    opacity: 0.4;
+  }
+
+  .glitch-hover:hover {
+    animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    text-shadow: 2px 0 var(--color-primary), -2px 0 var(--color-accent);
+  }
+
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-md border border-primary/20 shadow-[0_0_15px_rgba(0,240,255,0.05)];
+  }
+  
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent), var(--color-primary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-border:hover::before {
+    opacity: 0.5;
+    animation: border-rotate 4s linear infinite;
+  }
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
+
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-5deg); }
+  40% { transform: skew(5deg); }
+  60% { transform: skew(-2deg); }
+  80% { transform: skew(2deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes border-rotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}

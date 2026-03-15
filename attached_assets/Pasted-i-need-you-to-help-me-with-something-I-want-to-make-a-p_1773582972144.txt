@@ -1,0 +1,26 @@
+i need you to help me with something. I want to make a portofolio website.
+
+i've done a bunch of projects (I'll also showcase you my CV), i want to make a very very nice looking portofolio.
+I've done projects like:
+The safetynet arduino thing (academic project).
+Machine Learning Full Lifecycle Project.
+Computer Vision.
+Reinforcement Learning.
+Sentiment Analysis.
+Personal Project (analysis of the brussels website)
+
+these are some notes that I wrote down, maybe I'm missing some:
+ Retallio (retallio.app): a full-stack SaaS application I independently designed, built, and am preparing to launch in March.  Retallio is a retainer management tool for freelancers. It gives both the freelancer and their clients a real-time view of hours used, projected invoices, and billing — solving the classic "where did my hours go?" problem. I handled every layer of the product independently:  • Frontend: Next.js (App Router), React, Tailwind CSS, Framer Motion • Backend: Next.js API routes, Supabase (PostgreSQL), Row-Level Security • Integrations: Supabase Auth, Stripe (subscription billing), Sonner (notifications), Vercel deployment • Product: concept definition, landing page, onboarding flow, client portal, auto-invoicing logic, and launch campaign  The application is live and functional. I would be happy to walk you through a demo or discuss the architecture and technical decisions behind it.  Beyond Retallio, I have worked on a range of technical projects:  Academic projects:  • SafetyNet — a real-time IoT safety monitoring system with an Arduino/ESP8266 sensor layer, Spring Boot REST API backend, PostgreSQL storage, and an ML-based anomaly detection model. Deployed on a Red Hat Linux server. ( • Data & ML projects — including a full machine learning lifecycle project (fraud detection), a sentiment analysis system with three separate implementations, a reinforcement learning and multi-agent systems project, and a computer vision project using neural networks. • Data analytics — an end-to-end analytics pipeline for shared bicycle data (PostgreSQL, PySpark, Power BI, ETL), and a web traffic analysis of 27K+ Brussels government records.
+
+My name is Ionut. I'm a student, studying applied computer science. I am from Romania, currently studying in belgium. I also like playing chess and going to the gym.
+
+Retallio is more of a business that I've started but other than that that's it (i think..)
+
+
+The idea was this: Watch Dogs Vibe kinda (what do you think?) - I want to look - Impressive! cool etc.
+so try and embody that vibe, I also want on the top section kinda on the right to have a picture of me as well, when possible, some projects have links (retallio.app has a link, the brussels project has a link) - for the rest they are just academic projects. not deployed.
+
+here's kinda my idea but feel free to change it however you like, just make it impressive, cool and the most important characteristic: UNQUE
+
+
+

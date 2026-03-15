@@ -1,0 +1,17 @@
+packages:
+  "framer-motion": "Required for the cinematic boot sequence, scroll-reveal animations, and micro-interactions"
+  "react-hook-form": "Form state management for the contact section"
+  "@hookform/resolvers": "Zod validation resolver for the contact form"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts"
+
+images:
+  - path: "artifacts/portfolio/public/images/profile-placeholder.png"
+    description: "Cyberpunk aesthetic silhouette portrait, mysterious hacker figure, glowing neon blue edges, datamosh digital artifacts, dark navy background, watch dogs style, high quality"
+    aspect_ratio: "1:1"
+  - path: "artifacts/portfolio/public/images/grid-bg.png"
+    description: "Subtle dark high-tech terminal grid background, neon blue intersections, scanline texture, very dark navy, cyberpunk interface"
+    aspect_ratio: "16:9"
+
+notes:
+  - This is a pure frontend portfolio, no backend integration is needed. Form submissions will be simulated.
