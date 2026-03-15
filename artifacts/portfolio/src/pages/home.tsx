@@ -13,6 +13,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, Linkedin, ExternalLink, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+let hasBooted = false;
+
 function useContactForm() {
   const [isPending, setIsPending] = useState(false);
   const { toast } = useToast();
@@ -35,12 +37,12 @@ function useContactForm() {
 }
 
 export default function Home() {
-  const [booting, setBooting] = useState(true);
+  const [booting, setBooting] = useState(!hasBooted);
   const { submit, isPending } = useContactForm();
   const [, navigate] = useLocation();
 
   if (booting) {
-    return <BootSequence onComplete={() => setBooting(false)} />;
+    return <BootSequence onComplete={() => { hasBooted = true; setBooting(false); }} />;
   }
 
   const fadeInUp = {
@@ -263,9 +265,10 @@ export default function Home() {
                   slug: "ml-lifecycle",
                 },
                 {
-                  title: "Computer Vision",
-                  desc: "Built and trained neural networks for image classification tasks. One of my favourite academic projects.",
-                  tech: ["PyTorch", "OpenCV", "NumPy"],
+                  title: "Intel Image Classification",
+                  desc: "Natural scene classification across 6 categories using ResNet50 transfer learning, a scratch-built CNN, and Grad-CAM visual explanations.",
+                  tech: ["PyTorch", "ResNet50", "Grad-CAM", "TensorBoard"],
+                  slug: "computer-vision",
                 },
                 {
                   title: "RL Agent Training",

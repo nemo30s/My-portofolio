@@ -118,6 +118,43 @@ export const projects: Project[] = [
     course: "Applied Computer Science – Data & AI 6",
   },
   {
+    slug: "computer-vision",
+    title: "Intel Image Classification",
+    subtitle: "Deep Learning — Transfer Learning & Grad-CAM",
+    badge: "Academic",
+    tech: ["Python", "PyTorch", "TorchVision", "ResNet50", "Grad-CAM", "TensorBoard", "scikit-learn"],
+    shortDesc: "Scene classification across 6 natural categories using ResNet50 transfer learning, a CNN trained from scratch, and Grad-CAM visualizations — on the Intel Image Classification dataset.",
+    overview: "This deep learning project tackles natural scene image classification using the Intel Image Classification dataset from Kaggle. The dataset contains around 14,000 training images and 3,000 test images spread across six categories: buildings, forest, glacier, mountain, sea, and street. The project compares two training strategies — fine-tuning a pre-trained ResNet50 against a CNN built from scratch — and uses Grad-CAM to visualise which regions of each image the model focuses on when making predictions.",
+    highlights: [
+      { label: "Dataset", value: "Intel Image Classification" },
+      { label: "Training images", value: "14,034" },
+      { label: "Test images", value: "3,000" },
+      { label: "Classes", value: "6 (scene types)" },
+      { label: "Base model", value: "ResNet50 (ImageNet)" },
+      { label: "Training hardware", value: "Tesla T4 (Colab)" },
+    ],
+    sections: [
+      {
+        heading: "The Dataset",
+        body: "The Intel Image Classification dataset contains 150×150 RGB images split evenly across six natural scene categories: buildings, forest, glacier, mountain, sea, and street. The dataset is well-balanced across classes — each class has roughly 2,200–2,500 training images and 430–550 test images. Images were resized to 224×224 for ResNet compatibility and normalised using ImageNet mean and standard deviation.",
+      },
+      {
+        heading: "Transfer Learning with ResNet50",
+        body: "The primary model is ResNet50 pre-trained on ImageNet. The early convolutional layers were frozen to retain their general feature extraction capability, and the final classification head was replaced with a new layer for 6 classes. A second round of training then unfroze the final ResNet layers for fine-tuning. This approach benefits from over 1 million ImageNet images the model has already learned from, giving a strong head start on natural scene patterns.",
+      },
+      {
+        heading: "CNN from Scratch",
+        body: "For comparison, a custom CNN was also built and trained from scratch without any pre-trained weights. This allows direct comparison of how much value transfer learning adds — particularly relevant when working with a dataset of this size. Hyperparameter tuning tested learning rates of 0.0001, 0.001, and 0.01 across both architectures.",
+      },
+      {
+        heading: "Grad-CAM Visualisation",
+        body: "Gradient-weighted Class Activation Mapping (Grad-CAM) was applied to the trained ResNet50 to produce heat maps highlighting which regions of each image drove the model's prediction. This makes the model interpretable — you can see that it correctly focuses on sky and ice for glaciers, tree canopy for forests, and road surfaces for street scenes, rather than learning spurious patterns.",
+      },
+    ],
+    collaborators: ["Ionut Diaconu", "Robert", "Fares"],
+    course: "Applied Computer Science — Deep Learning",
+  },
+  {
     slug: "ai-agents",
     title: "AI Meal Planning Agent",
     subtitle: "Multi-agent system with Gemini, FastAPI & real-time pricing",
