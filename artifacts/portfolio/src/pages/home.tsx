@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { useLocation } from 'wouter';
 import { BootSequence } from '@/components/BootSequence';
 import { Navigation } from '@/components/Navigation';
@@ -8,49 +8,25 @@ import { GlitchText } from '@/components/GlitchText';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, Linkedin, ExternalLink, ArrowRight } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Terminal, MapPin, GraduationCap, Cpu, Code2, Database, Brain, Network, Send, Target, Dumbbell, ExternalLink, ArrowRight, Download, Briefcase, BookOpen, Calendar } from 'lucide-react';
+import { FaLinkedin } from 'react-icons/fa';
 
 let hasBooted = false;
 
-function useContactForm() {
-  const [isPending, setIsPending] = useState(false);
-  const { toast } = useToast();
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsPending(true);
-    setTimeout(() => {
-      setIsPending(false);
-      toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out — I'll get back to you soon.",
-        variant: "default",
-      });
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
-  };
-
-  return { submit, isPending };
-}
-
 export default function Home() {
   const [booting, setBooting] = useState(!hasBooted);
-  const { submit, isPending } = useContactForm();
   const [, navigate] = useLocation();
 
   if (booting) {
     return <BootSequence onComplete={() => { hasBooted = true; setBooting(false); }} />;
   }
 
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -115,7 +91,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
@@ -387,73 +363,221 @@ export default function Home() {
           </div>
         </section>
 
+        {/* RESUME SECTION */}
+        <section id="resume" className="py-24 relative border-t border-primary/10">
+          <div className="max-w-7xl mx-auto px-6">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
+                <span className="text-primary font-mono text-lg mr-4">04.</span>
+                Resume
+              </h2>
+            </motion.div>
+
+            {/* Dossier header */}
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+              <div className="border border-primary/40 p-px mb-10 relative">
+                <div className="border border-primary/10 bg-card/40 p-6 flex flex-col sm:flex-row justify-between items-start gap-4 relative overflow-hidden">
+                  <div className="absolute -right-6 -top-6 text-primary/5 font-serif font-black text-[8rem] leading-none select-none pointer-events-none">✦</div>
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.3em] text-primary/50 uppercase mb-2">Personnel File — Classification: Open</p>
+                    <p className="font-serif text-2xl font-bold text-foreground">Ionut Diaconu</p>
+                    <p className="font-mono text-sm text-primary mt-1">Applied CS Student · Builder · Open to Work</p>
+                  </div>
+                  <div className="font-mono text-[10px] text-muted-foreground/60 space-y-1 text-right shrink-0">
+                    <p>REF: ID-2026-ACS</p>
+                    <p>LOCATION: Antwerp, BE</p>
+                    <p>CLEARANCE: <span className="text-primary">FULL STACK</span></p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-5 gap-8">
+              {/* Left column: Education + Languages */}
+              <motion.div
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+                className="lg:col-span-2 space-y-6"
+              >
+                {/* Education */}
+                <motion.div variants={fadeInUp} className="border border-primary/20 bg-background/40 p-6 relative group hover:border-primary/40 transition-colors">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+                  <div className="flex items-center gap-2 mb-5">
+                    <BookOpen className="w-4 h-4 text-primary" />
+                    <span className="font-mono text-xs tracking-[0.25em] text-primary uppercase">Education</span>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-start justify-between gap-2 mb-1">
+                        <p className="font-mono text-sm font-semibold text-foreground leading-tight">Applied Computer Science</p>
+                        <span className="font-mono text-[10px] text-muted-foreground shrink-0 flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />2023 – 2026
+                        </span>
+                      </div>
+                      <p className="font-mono text-xs text-primary/80">Karel de Grote University College</p>
+                      <p className="font-mono text-xs text-muted-foreground mt-0.5">Antwerp, Belgium · Specialisation: Data & AI</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Languages */}
+                <motion.div variants={fadeInUp} className="border border-primary/20 bg-background/40 p-6 relative group hover:border-primary/40 transition-colors">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+                  <div className="flex items-center gap-2 mb-5">
+                    <Network className="w-4 h-4 text-primary" />
+                    <span className="font-mono text-xs tracking-[0.25em] text-primary uppercase">Languages</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {[
+                      { lang: "Romanian", level: "Native" },
+                      { lang: "English", level: "Fluent" },
+                      { lang: "Dutch", level: "Intermediate" },
+                      { lang: "French", level: "Basic" },
+                    ].map(({ lang, level }) => (
+                      <li key={lang} className="flex items-center justify-between font-mono text-sm">
+                        <span className="text-foreground flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary/50" />
+                          {lang}
+                        </span>
+                        <span className="text-muted-foreground text-xs">{level}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </motion.div>
+
+              {/* Right column: Experience */}
+              <motion.div
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+                className="lg:col-span-3 space-y-6"
+              >
+                <motion.div variants={fadeInUp} className="border border-primary/20 bg-background/40 p-6 relative group hover:border-primary/40 transition-colors">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+                  <div className="flex items-center gap-2 mb-6">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                    <span className="font-mono text-xs tracking-[0.25em] text-primary uppercase">Experience</span>
+                  </div>
+
+                  <div className="space-y-8">
+                    {/* Student job */}
+                    <div className="relative pl-4 border-l border-primary/20">
+                      <div className="absolute -left-[3px] top-1.5 w-1.5 h-1.5 bg-primary" />
+                      <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <div>
+                          <p className="font-mono text-sm font-semibold text-foreground">AI Data Quality Analyst</p>
+                          <p className="font-mono text-xs text-primary/80 mt-0.5">Brussels Startup · Student Job</p>
+                        </div>
+                        <span className="font-mono text-[10px] text-muted-foreground flex items-center gap-1 shrink-0">
+                          <Calendar className="w-3 h-3" />2025 – Present
+                        </span>
+                      </div>
+                      <p className="font-mono text-xs text-muted-foreground mt-2 leading-relaxed">
+                        Reviewing and improving AI-generated outputs to ensure data quality and accuracy. Working alongside engineers to identify edge cases and improve model performance.
+                      </p>
+                    </div>
+
+                    {/* Retallio */}
+                    <div className="relative pl-4 border-l border-primary/20">
+                      <div className="absolute -left-[3px] top-1.5 w-1.5 h-1.5 bg-accent" />
+                      <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+                        <div>
+                          <p className="font-mono text-sm font-semibold text-foreground">Founder & Builder — Retallio</p>
+                          <p className="font-mono text-xs text-accent/80 mt-0.5">
+                            <a href="https://retallio.app" target="_blank" rel="noreferrer" className="hover:underline flex items-center gap-1">
+                              retallio.app <ExternalLink className="w-3 h-3 inline" />
+                            </a>
+                          </p>
+                        </div>
+                        <span className="font-mono text-[10px] text-muted-foreground flex items-center gap-1 shrink-0">
+                          <Calendar className="w-3 h-3" />2024 – Present
+                        </span>
+                      </div>
+                      <p className="font-mono text-xs text-muted-foreground mt-2 leading-relaxed">
+                        Designed and built a retainer management SaaS for freelancers from scratch — full stack, solo. Next.js, React, PostgreSQL, Stripe, Tailwind.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Download CV */}
+            <motion.div
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              className="mt-10 flex justify-center"
+            >
+              <a href="/cv.pdf" target="_blank" rel="noreferrer">
+                <Button variant="outline" size="lg" className="gap-2 border-primary/40 hover:border-primary font-mono tracking-widest text-xs">
+                  <Download className="w-4 h-4" />
+                  View CV (PDF)
+                </Button>
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
         {/* CONTACT SECTION */}
         <section id="contact" className="py-24 relative border-t border-primary/10">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-12 border-b border-primary/20 pb-4 inline-block pr-12">
-                <span className="text-primary font-mono text-lg mr-4">04.</span>
+                <span className="text-primary font-mono text-lg mr-4">05.</span>
                 Get in Touch
               </h2>
             </motion.div>
 
-            <div className="grid md:grid-cols-5 gap-12">
-              <motion.div 
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
-                className="md:col-span-2 space-y-8"
-              >
-                <p className="font-mono text-muted-foreground text-sm leading-relaxed">
-                  Whether you have a job opportunity, want to collaborate on something, or just want to say hi — feel free to reach out. I'm always happy to chat.
-                </p>
-                
-                <div className="space-y-4">
-                  <a href="mailto:diaconu.ionut029@gmail.com" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
-                    <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10">
-                      <Send className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground tracking-widest">Email</span>
-                      <span className="text-foreground group-hover:text-primary transition-colors">diaconu.ionut029@gmail.com</span>
-                    </div>
-                  </a>
+            <motion.div
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              className="max-w-2xl"
+            >
+              <p className="font-mono text-muted-foreground text-sm leading-relaxed mb-10">
+                Whether you have a job opportunity, want to collaborate, or just want to say hi — pick a channel and reach out. I'm always happy to chat.
+              </p>
+            </motion.div>
 
-                  <a href="https://www.linkedin.com/in/diaconu-ionut/" target="_blank" rel="noreferrer" className="flex items-center gap-4 font-mono text-sm group hover:bg-primary/5 p-3 border border-transparent hover:border-primary/20 transition-all">
-                    <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10">
-                      <Linkedin className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground tracking-widest">LinkedIn</span>
-                      <span className="text-foreground group-hover:text-primary transition-colors">Ionut Diaconu</span>
-                    </div>
-                  </a>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
-                className="md:col-span-3"
-              >
-                <form onSubmit={submit} className="space-y-6 bg-card/30 p-8 border border-primary/20">
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Your Name</label>
-                      <Input required placeholder="John Smith" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-mono text-primary tracking-widest uppercase">Your Email</label>
-                      <Input required type="email" placeholder="john@example.com" />
-                    </div>
+            <motion.div
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl"
+            >
+              {[
+                {
+                  label: "Email",
+                  value: "diaconu.ionut029@gmail.com",
+                  href: "mailto:diaconu.ionut029@gmail.com",
+                  icon: <Send className="w-5 h-5" />,
+                  external: false,
+                },
+                {
+                  label: "LinkedIn",
+                  value: "/in/diaconu-ionut",
+                  href: "https://www.linkedin.com/in/diaconu-ionut/",
+                  icon: <FaLinkedin className="w-5 h-5" />,
+                  external: true,
+                },
+                {
+                  label: "Retallio",
+                  value: "retallio.app",
+                  href: "https://retallio.app",
+                  icon: <ExternalLink className="w-5 h-5" />,
+                  external: true,
+                },
+              ].map(({ label, value, href, icon, external }) => (
+                <motion.a
+                  key={label}
+                  variants={fadeInUp}
+                  href={href}
+                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  className="flex flex-col gap-3 p-6 border border-primary/20 bg-background/40 hover:bg-primary/5 hover:border-primary/50 transition-all group"
+                >
+                  <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
+                    {icon}
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-mono text-primary tracking-widest uppercase">Message</label>
-                    <Textarea required placeholder="What's on your mind?" />
+                  <div>
+                    <p className="font-mono text-[10px] text-muted-foreground tracking-widest uppercase mb-1">{label}</p>
+                    <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors break-all">{value}</p>
                   </div>
-                  <Button type="submit" variant="solid" className="w-full" disabled={isPending}>
-                    {isPending ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </motion.div>
-            </div>
+                </motion.a>
+              ))}
+            </motion.div>
           </div>
         </section>
       </main>

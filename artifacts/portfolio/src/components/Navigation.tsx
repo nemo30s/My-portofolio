@@ -42,7 +42,7 @@ export function Navigation() {
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
-          {['about', 'projects', 'skills', 'contact'].map((item) => (
+          {['about', 'projects', 'skills', 'resume', 'contact'].map((item) => (
             <button
               key={item}
               onClick={() => scrollTo(item)}

@@ -27,9 +27,9 @@ function TypingLine({ text, onDone, isFinal }: { text: string; onDone: () => voi
         i++;
       } else {
         clearInterval(interval);
-        setTimeout(onDone, isFinal ? 100 : 80);
+        setTimeout(onDone, isFinal ? 50 : 35);
       }
-    }, isFinal ? 40 : 18);
+    }, isFinal ? 18 : 8);
     return () => clearInterval(interval);
   }, []);
 
@@ -81,8 +81,8 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     } else {
       setTimeout(() => {
         setIsDone(true);
-        setTimeout(onComplete, 600);
-      }, 1200);
+        setTimeout(onComplete, 400);
+      }, 700);
     }
   };
 
